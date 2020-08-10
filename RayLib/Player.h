@@ -3,6 +3,7 @@
 
 #include "raylib.h"
 
+
 typedef struct {
 	Vector2 position;
 	int width;
@@ -15,6 +16,7 @@ typedef struct {
 extern Player player1;
 
 
+Player CreatePlayer(int x, int y, int width, int height, Color color, float speed);
 void DrawPlayer(Player* player);
 
 

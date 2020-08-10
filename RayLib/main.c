@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include "Player.h"
+#include "Input.h"
 
 
 /* WINDOW */
@@ -14,36 +15,29 @@ const int WindowHeight = 1080;
 */
 int game_mode = 1;
 
-void HandleInput(void);
+/* DIFFICULTY ------ Basically adjusts speed in single player game mode  I WILL IMPLEMENT THIS LATER */
+float easy = 5.f;
+float normal = 10.f;
+float hard = 15.f;
+
+
 
 int main() {
 	
-
+	// Initialize window
 	InitWindow(WindowWidth, WindowHeight, "Deneme");
 
+	// Limit Fps
 	SetTargetFPS(60);
+	// Make it fullscreen
 	ToggleFullscreen();
 
 	/* Player1 */
-	Vector2 Player1Pos = {
-			10,
-			440
-	};
-	Player player1 = {
-		.position = Player1Pos,
-		.width = 20,
-		.height = 200,
-		.color = WHITE,
-		.speed = 10
-	};
-	Rectangle playerRect = {
-		.x = player1.position.x,
-		.y = player1.position.y,
-		.width = player1.width,
-		.height = player1.height
-	};
-	player1.playerRect = playerRect;
+	Player player1 = CreatePlayer(10, 440, 20, 200, WHITE, 10.f);
 
+	/* Player2 or AI */
+	Player player2 = CreatePlayer(1900, 440, 20, 200, WHITE, 10.f);
+	
 	
 	while (!WindowShouldClose()) {
 		
@@ -51,8 +45,14 @@ int main() {
 		ClearBackground(BLACK);
 		DrawText("PONG", WindowWidth/2, 0, 20, WHITE);
 
-		HandleInput(&player1);
+		/* Update position and draw*/
+		HandleInput(&player1, game_mode, GetScreenWidth(), GetScreenHeight());
 		DrawPlayer(&player1);
+
+		/* Check if it is single player */
+		if (game_mode == 1) {
+			DrawPlayer(&player2);
+		}
 
 		EndDrawing();
 	}
@@ -62,19 +62,3 @@ int main() {
 }
 
 
-void HandleInput(Player *player) {
-	if (game_mode == 1) {
-		if (IsKeyDown(KEY_S)) {
-			if (player->playerRect.y <= WindowHeight - 200) {
-				player->playerRect.y += player->speed;
-			}
-		} // S
-
-		if (IsKeyDown(KEY_W)) {
-			if (player->playerRect.y <= WindowHeight && player->playerRect.y > 0) {
-				player->playerRect.y -= player->speed;
-			}
-		} // W
-		
-	} // game mode
-}
