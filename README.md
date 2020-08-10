@@ -1,7 +1,7 @@
 # Pong-Raylib
   Pong game with raylib library
 
-#How to run?
+# How to run?
   1. Unzip files.
   2. Open Raylib.sln file.
   3. Click Build and then Build Solution
