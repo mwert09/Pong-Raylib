@@ -3,8 +3,8 @@
 
 
 void HandleInput(Player* player, int game_mode, int WindowWidth, int WindowHeight) {
-	/* if it is single player then use this */
 	switch(game_mode) {
+		/* if it is single player then use this */
 		case 1:
 			if (IsKeyDown(KEY_S)) {
 				if (player->playerRect.y <= WindowHeight - 200) {
