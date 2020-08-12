@@ -9,3 +9,7 @@
   5. If you want to run from debug folder copy raylib.dll from project folder to Debug folder.
   6. Run Raylib.exe
   7. DONE!
+  
+ # Music
+  Background music from PlayOnLoop.com
+  Licensed under Creative Commons by Attribution 4.0
