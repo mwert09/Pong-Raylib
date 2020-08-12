@@ -11,7 +11,9 @@ Player CreatePlayer(int x, int y, int width, int height, Color color, float spee
 		.width = width,
 		.height = height,
 		.color = color,
-		.speed = speed
+		.speed = speed,
+		.score = 0,
+		.scored = 0
 	};
 	Rectangle player1Rect = {
 		.x = player.position.x,

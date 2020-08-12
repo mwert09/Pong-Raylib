@@ -11,10 +11,10 @@ typedef struct {
 	Color color;
 	float speed;
 	Rectangle playerRect;
+	int score;
+	int scored;
 }Player;
 
-/* Player 1 */
-extern Player player1;
 
 /* Function to create player */
 Player CreatePlayer(int x, int y, int width, int height, Color color, float speed);

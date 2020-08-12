@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ball.c" />
     <ClCompile Include="EnvironmentItem.c" />
     <ClCompile Include="Input.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="Player.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ball.h" />
     <ClInclude Include="EnvironmentItem.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Player.h" />
