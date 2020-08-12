@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ball.c" />
+    <ClCompile Include="ComputerAI.c" />
     <ClCompile Include="EnvironmentItem.c" />
     <ClCompile Include="Input.c" />
     <ClCompile Include="main.c" />
@@ -27,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="ComputerAI.h" />
     <ClInclude Include="EnvironmentItem.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Player.h" />

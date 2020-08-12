@@ -24,6 +24,6 @@ Ball CreateBall(int x, int y, float radius, Color color, float speed);
 void DrawBall(Ball* ball);
 
 /* Function to handle ball movement */
-void HandleBallMovementAndCollision(Ball* ball, Rectangle LeftRacket, Rectangle RightRacket, Rectangle LeftWall, Rectangle RightWall, Rectangle UpWall, Rectangle DownWall, Player* player1, Player* player2);
+void HandleBallMovementAndCollision(Ball* ball, Rectangle LeftRacket, Rectangle RightRacket, Rectangle LeftWall, Rectangle RightWall, Rectangle UpWall, Rectangle DownWall, Player* player1, Player* player2, Sound* hitSound);
 
 #endif

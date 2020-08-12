@@ -4,14 +4,8 @@
 #include "Input.h"
 #include "EnvironmentItem.h"
 #include "Ball.h"
+#include "ComputerAI.h"
 
-/* TODO: 
-			AI or Player2 Movement (First AI)
-			Bug Fix
-			Menus
-			Publish itch io
-			Github
-*/
 
 
 /* WINDOW */
@@ -38,10 +32,20 @@ int main() {
 	// Initialize window
 	InitWindow(WindowWidth, WindowHeight, "Deneme");
 
+	// Init audio device
+	InitAudioDevice();
+
 	// Limit Fps
 	SetTargetFPS(60);
 	// Make it fullscreen
 	ToggleFullscreen();
+
+	/* Music */
+	Music music = LoadMusicStream("POL-net-bots-short.mp3");
+	PlayMusicStream(music);
+
+	/* Hit Sound */
+	Sound hitSound = LoadSound("hit.wav");
 
 	/* Player1 */
 	Player player1 = CreatePlayer(10, 440, 20, 200, WHITE, 10.f);
@@ -89,18 +93,24 @@ int main() {
 		DrawText("PONG", WindowWidth/2 - 20, 0, 20, WHITE);
 		DrawText(FormatText("Player1 Score: %d", player1.score), GetScreenWidth() / 2 - 400, 30, 20, WHITE);
 		DrawText(FormatText("Player2 Score: %d", player2.score), GetScreenWidth() / 2 + 400, 30, 20, WHITE);
-		DrawText(FormatText("Ball Speed: %f", ball.speed), GetScreenWidth() / 2 - 80, GetScreenHeight() - 50, 20, WHITE);
-		
+		DrawText(FormatText("Ball Speed: %d", (int)ball.speed), GetScreenWidth() / 2 - 80, GetScreenHeight() - 50, 20, WHITE);
 		/* Update position and draw*/
 		HandleInput(&player1, game_mode, GetScreenWidth(), GetScreenHeight());
 		DrawPlayer(&player1);
 
-		DrawPlayer(&player2);
 
 		DrawEnvironment(envItems, envItemsLength);
 
-		HandleBallMovementAndCollision(&ball, player1.playerRect, player2.playerRect, envItems[10].rect, envItems[11].rect, envItems[12].rect, envItems[13].rect, &player1, &player2);;
+		HandleBallMovementAndCollision(&ball, player1.playerRect, player2.playerRect, envItems[10].rect, envItems[11].rect, envItems[12].rect, envItems[13].rect, &player1, &player2, &hitSound);;
 		DrawBall(&ball);
+
+
+		// if single player 
+		HandleAIMovement(&player2, &ball);
+
+
+
+		DrawPlayer(&player2);
 
 		if (player1.scored == 1) {
 			DrawText("Player1 Scored!", GetScreenWidth() / 2 - 400, 100, 20, WHITE);
@@ -118,6 +128,9 @@ int main() {
 		EndDrawing();
 	}
 
+	UnloadMusicStream(music);
+	UnloadSound(hitSound);
+	CloseAudioDevice();
 	CloseWindow();
 	return 0;
 }

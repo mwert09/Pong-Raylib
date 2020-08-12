@@ -23,12 +23,13 @@ void DrawBall(Ball* ball)
 }
 
 /* Function to handle ball movement and collision */
-void HandleBallMovementAndCollision(Ball* ball, Rectangle LeftRacket, Rectangle RightRacket, Rectangle LeftWall, Rectangle RightWall, Rectangle UpWall, Rectangle DownWall, Player* player1, Player* player2)
+void HandleBallMovementAndCollision(Ball* ball, Rectangle LeftRacket, Rectangle RightRacket, Rectangle LeftWall, Rectangle RightWall, Rectangle UpWall, Rectangle DownWall, Player* player1, Player* player2, Sound* hitSound)
 {
 
 	if (CheckCollisionCircleRec(ball->BallPosition, ball->radius, LeftRacket) || CheckCollisionCircleRec(ball->BallPosition, ball->radius, RightRacket)) {
 		ball->x_mov *= -1;
 		ball->speed++;
+		PlaySound(*hitSound);
 	}
 	else {
 		if (CheckCollisionCircleRec(ball->BallPosition, ball->radius, UpWall) || CheckCollisionCircleRec(ball->BallPosition, ball->radius, DownWall)) {
